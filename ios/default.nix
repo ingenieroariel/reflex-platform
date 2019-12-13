@@ -1,4 +1,4 @@
-{ nixpkgs, ghc }:
+{ nixpkgs, ghc, withSimulator ? false }:
 
 { #TODO
   bundleName
@@ -84,15 +84,15 @@ let
         ];
       };
     };
-    DTSDKName = "iphoneos10.2";
+    DTSDKName = "iphoneos12.4";
     DTXcode = "0821";
-    DTSDKBuild = "14C89";
+    DTSDKBuild = "16G73";
     BuildMachineOSBuild = "16D32";
     DTPlatformName = "iphoneos";
     DTCompiler = "com.apple.compilers.llvm.clang.1_0";
     MinimumOSVersion = "10.2";
-    DTXcodeBuild = "8C1002";
-    DTPlatformVersion = "10.2";
+    DTXcodeBuild = "10G8";
+    DTPlatformVersion = "12.4";
     DTPlatformBuild = "14C89";
     NSPhotoLibraryUsageDescription = "Allow access to photo library.";
     NSCameraUsageDescription = "Allow access to camera.";
@@ -273,9 +273,9 @@ nixpkgs.runCommand "${executableName}-app" (rec {
     cp -LR "$(dirname $0)/../${executableName}.app" $tmpdir
     chmod +w "$tmpdir/${executableName}.app"
     mkdir -p "$tmpdir/${executableName}.app/config"
-    (cd "$(dirname $0)/../../scripts" && ./run-in-ios-sim "$tmpdir/${executableName}.app")
+    ${../scripts/run-in-ios-sim} "$(dirname $0)/../${executableName}.app"
   '';
-}) ''
+}) (''
   set -x
   mkdir -p "$out/${executableName}.app"
   ln -s "$infoPlist" "$out/${executableName}.app/Info.plist"
@@ -286,12 +286,14 @@ nixpkgs.runCommand "${executableName}-app" (rec {
   chmod +x "$out/bin/deploy"
   cp --no-preserve=mode "$packageScript" "$out/bin/package"
   chmod +x "$out/bin/package"
+'' + nixpkgs.lib.optionalString withSimulator ''
   cp --no-preserve=mode "$runInSim" "$out/bin/run-in-sim"
   chmod +x "$out/bin/run-in-sim"
+'' + ''
   ln -s "$exePath/bin/${executableName}" "$out/${executableName}.app/"
   cp -RL "${staticSrc}"/* "$out/${executableName}.app/"
   for icon in "${staticSrc}"/assets/Icon*.png; do
     cp -RL "$icon" "$out/${executableName}.app/"
   done
   set +x
-''
+'')
