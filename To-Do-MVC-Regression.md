@@ -42,6 +42,12 @@ Exit the try-reflex shell with the exit command
 exit
 ```
 
+### Generating Documentation
+```
+./scripts/docs-for reflex
+./scripts/docs-for reflex-dom
+```
+
 ### Running a build on the web
 ```
 nix-build -A ghcjs.reflex-todomvc
@@ -101,12 +107,8 @@ exit
 scripts/hack-off haskell-overlays/reflex-packages/dep/reflex
 ```
 
-
 ### Removing the sandbox dir:
 ```
 cd ../../
 rm -rf rp-sandbox
 ```
-
-
-
