@@ -3,7 +3,7 @@ cabal-version:       2.0
 -- init'.  For further documentation, see
 -- http://haskell.org/cabal/users-guide/
 
-name:                work-on-test
+name:                WorkOnTest
 version:             0.1.0.0
 -- synopsis:
 -- description:
@@ -17,7 +17,7 @@ maintainer:
 build-type:          Simple
 extra-source-files:  CHANGELOG.md
 
-executable work-on-test
+executable WorkOnTest
   main-is:             Main.hs
   -- other-modules:
   -- other-extensions:
