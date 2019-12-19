@@ -1,4 +1,0 @@
-projects:
-  - haskell-overlays/reflex-packages/dep/reflex-dom/
-  - haskell-overlays/reflex-packages/dep/reflex-dom-core/
-  - examples/hello-world/
