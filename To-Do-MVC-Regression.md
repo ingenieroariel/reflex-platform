@@ -68,11 +68,7 @@ Make sure that your android device has been plugged in, that you have deleted an
 <nix path from command above>/bin/deploy
 ```
 ### Testing TODOMVC app on IOS
-IOS:
-  - Register your OS email with an apple id account. Then, using this id, create an apple developer account
-  - Ask the OS manager (Ali, Hector) to add you to the Obsidian developer group. You can only do this after you have 
-    created an apple developer account (in the above step).
-  - 
+
 
 ### Testing the 'work-on-multi' script
 ```
@@ -89,7 +85,7 @@ packages:
 
 Run the work-on script:
 ```
-scripts/work-on ghc './examples/work-on-test/'
+scripts/work-on ghc './examples/WorkOnTest/'
 cd examples/WorkOnTest
 cabal new-build
 cabal new-run
